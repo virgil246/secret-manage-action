@@ -1,9 +1,7 @@
 name: "Setup Secret"
 
 on:
-  pull_request:
-    branches:
-      - master
+  'push'
 
 jobs:
   pretest:
