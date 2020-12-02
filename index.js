@@ -31,7 +31,7 @@ const boostrap = async (octokit, owner, repo, name, value) => {
         if (value.length > 0) {
             console.log(name)
 
-            res = await octokit.actions.createOrUpdateRepoSecret({ owner: owner, repo: repo, name: name, data })
+            res = await octokit.actions.createOrUpdateRepoSecret({  owner,  repo, secret_name: name, data })
 
 
             console.log(res)
@@ -52,6 +52,7 @@ try {
     const myToken = core.getInput('myToken');
     console.log(myToken)
     const octokit = github.getOctokit(token)
+    octokit.actions.createOrUpdateRepoSecret()
     boostrap(octokit, own_repo[0], own_repo[1], name, value)
 } catch (error) {
     core.setFailed(error.message);
