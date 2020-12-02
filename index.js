@@ -20,11 +20,21 @@ function EncodeSecretValue(key_id, key, value) {
         key_id
     }
 }
-const boostrap = async (octokit, owner, repo,  name, value) => {
-    const { key_id, key } = await octokit.actions.getRepoPublicKey({ owner, repo })
+const boostrap = async (octokit, owner, repo, name, value) => {
+    try {
+        const { key_id, key } = await octokit.actions.getRepoPublicKey({ owner, repo })
+
+    } catch (error) {
+        console.log(error)
+    }
     const data = EncodeSecretValue(key_id, key, value)
     if (value.length > 0) {
-        res = await octokit.actions.createOrUpdateRepoSecret({ owner, repo, name, data })
+        try {
+            res = await octokit.actions.createOrUpdateRepoSecret({ owner, repo, name, data })
+    
+        } catch (error) {
+            console.log(error)
+        }
         console.log(res)
     }
 
@@ -38,7 +48,6 @@ try {
     const myToken = core.getInput('myToken');
 
     const octokit = github.getOctokit(token)
-    console.log(octokit)
     // boostrap(octokit, owner, repo, name, value)
 } catch (error) {
     core.setFailed(error.message);
