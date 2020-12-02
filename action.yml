@@ -1,0 +1,21 @@
+name: 'Secret Manage'
+description: 'Manage Secret of repository'
+inputs:
+  repo:
+    description: 'Target Repo'
+    require: true
+  token:
+    description: 'Repo Access Token'
+    require: true
+  name:  
+    description: 'Secret Name'
+    required: true
+  value: 
+    description: 'Secret Value'
+  
+outputs:
+  status: # id of output
+    description: 'Success or not'
+runs:
+  using: 'node12'
+  main: 'index.js'
