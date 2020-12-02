@@ -31,7 +31,7 @@ const boostrap = async (octokit, owner, repo, name, value) => {
         if (value.length > 0) {
 
             res = await octokit.actions.createOrUpdateRepoSecret({  owner,  repo, secret_name: name, data })
-            console.log(res)
+            console.log(`Here is response : ${res}`)
 
             if (res.status >= 400) {
                 Core.setFailed(res.data)
