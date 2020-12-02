@@ -1,5 +1,7 @@
 name: 'Secret Manage'
 description: 'Manage Secret of repository'
+icon: check
+color: blue
 inputs:
   repo:
     description: 'Target Repo'
