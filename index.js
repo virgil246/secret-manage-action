@@ -22,23 +22,23 @@ function EncodeSecretValue(key_id, key, value) {
 }
 const boostrap = async (octokit, owner, repo, name, value) => {
     try {
-        var res = await octokit.actions.getRepoPublicKey({ owner, repo })
+        var res = await octokit.actions.getRepoPublicKey({ owner, repo }).catch(error => { Core.setFailed(res.data) })
         const key_id = res.data.key_id
         const key = res.data.key
- 
+
 
         const data = EncodeSecretValue(key_id, key, value)
         if (value.length > 0) {
 
-            res = await octokit.actions.createOrUpdateRepoSecret({  owner,  repo, secret_name: name, data })
+            res = await octokit.actions.createOrUpdateRepoSecret({ owner, repo, secret_name: name, data }).catch(error => { Core.setFailed(res.data) })
             console.log(`Here is response : ${res}`)
 
             if (res.status >= 400) {
                 Core.setFailed(res.data)
-              } else {
+            } else {
                 Core.setOutput('status', res.status)
                 Core.setOutput('data', res.data)
-              }
+            }
         }
     } catch (error) {
         Core.setFailed(error.message)
