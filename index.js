@@ -41,15 +41,14 @@ const boostrap = async (octokit, owner, repo, name, value) => {
 }
 try {
     // `who-to-greet` input defined in action metadata file
-    const {owner,repo}= core.getInput('repo').split('/')
-    console.log(owner,repo)
+    const own_repo= core.getInput('repo').split('/')
     const token = core.getInput('token');
     const name = core.getInput('name')
     const value = core.getInput('value');
     const myToken = core.getInput('myToken');
     console.log(myToken)
     const octokit = github.getOctokit(token)
-    // boostrap(octokit, owner, repo, name, value)
+    boostrap(octokit, own_repo[0], own_repo[1], name, value)
 } catch (error) {
     core.setFailed(error.message);
 }
