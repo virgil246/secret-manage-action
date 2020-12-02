@@ -18,8 +18,11 @@ inputs:
     description: 'Secret Value'
   
 outputs:
-  status: # id of output
-    description: 'Success or not'
+  code:
+    description: Status code
+
+  data:
+    description: Response data
 runs:
   using: 'node12'
   main: 'index.js'

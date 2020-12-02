@@ -25,21 +25,25 @@ const boostrap = async (octokit, owner, repo, name, value) => {
         var res = await octokit.actions.getRepoPublicKey({ owner, repo })
         const key_id = res.data.key_id
         const key = res.data.key
-        console.log(value)
+ 
 
         const data = EncodeSecretValue(key_id, key, value)
         if (value.length > 0) {
-            console.log(name)
 
             res = await octokit.actions.createOrUpdateRepoSecret({  owner,  repo, secret_name: name, data })
 
 
-            console.log(res)
+            if (res.status >= 400) {
+                Core.setFailed(res.data)
+              } else {
+                Core.setOutput('status', res.status)
+                Core.setOutput('data', res.data)
+              }
         }
     } catch (error) {
-        console.log(error)
+        Core.setFailed(error.message)
+        console.error(error)
     }
-
 
 }
 try {
@@ -47,10 +51,8 @@ try {
     const own_repo = core.getInput('repo').split('/');
     const token = core.getInput('token');
     const name = core.getInput('name');
-    console.log(name)
     const value = core.getInput('value');
     const myToken = core.getInput('myToken');
-    console.log(myToken)
     const octokit = github.getOctokit(token)
     octokit.actions.createOrUpdateRepoSecret()
     boostrap(octokit, own_repo[0], own_repo[1], name, value)

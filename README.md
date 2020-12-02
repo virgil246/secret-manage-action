@@ -17,8 +17,13 @@ This action is help to update Secret within the action
 The value of Secret
 
 ## Outputs
-### status
-Success or not
+### `status`
+Response status code
+
+### `data`
+Response json payload
+
+
 
 
 ## Example usage
