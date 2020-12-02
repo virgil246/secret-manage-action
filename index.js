@@ -21,17 +21,15 @@ function EncodeSecretValue(key_id, key, value) {
     }
 }
 const boostrap = async (octokit, owner, repo, name, value) => {
-    try {
-        const { key_id, key } = await octokit.actions.getRepoPublicKey({ owner, repo })
 
-    } catch (error) {
-        console.log(error)
-    }
+    const { key_id, key } = await octokit.actions.getRepoPublicKey({ owner, repo })
+
+
     const data = EncodeSecretValue(key_id, key, value)
     if (value.length > 0) {
         try {
             res = await octokit.actions.createOrUpdateRepoSecret({ owner, repo, name, data })
-    
+
         } catch (error) {
             console.log(error)
         }
@@ -41,7 +39,7 @@ const boostrap = async (octokit, owner, repo, name, value) => {
 }
 try {
     // `who-to-greet` input defined in action metadata file
-    const own_repo= core.getInput('repo').split('/')
+    const own_repo = core.getInput('repo').split('/')
     const token = core.getInput('token');
     const name = core.getInput('name')
     const value = core.getInput('value');
