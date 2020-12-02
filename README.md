@@ -24,7 +24,7 @@ Success or not
 ## Example usage
 
 ```
-uses: actions/secret-manage-action@v1.0
+uses: virgil246/secret-manage-action@v1.0
 with:
   repo:'virgil246/secret-manage-action'
   token:${secret.REPO_KEY}
