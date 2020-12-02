@@ -16,14 +16,14 @@ function EncodeSecretValue(key_id, key, value) {
 
     console.log(encrypted);
     return {
-        encrypted:Buffer.from(encryptedBytes).toString('base64'),
+        encrypted: Buffer.from(encryptedBytes).toString('base64'),
         key_id
     }
 }
 const boostrap = async (octokit, owner, repo, name, value) => {
     try {
         const { key_id, key } = await octokit.actions.getRepoPublicKey({ owner, repo })
-
+        console.log(key_id, key)
 
         const data = EncodeSecretValue(key_id, key, value)
         if (value.length > 0) {
