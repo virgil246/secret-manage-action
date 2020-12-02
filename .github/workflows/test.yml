@@ -1,7 +1,6 @@
 name: "Setup Secret"
 
-on:
-  'push'
+on:'push'
 
 jobs:
   pretest:
