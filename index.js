@@ -16,7 +16,7 @@ function EncodeSecretValue(key_id, key, value) {
 
     console.log(encrypted);
     return {
-        encrypted: Buffer.from(encryptedBytes).toString('base64'),
+        encrypted_value: Buffer.from(encryptedBytes).toString('base64'),
         key_id
     }
 }
