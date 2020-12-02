@@ -48,7 +48,7 @@ try {
     const myToken = core.getInput('myToken');
 
     const octokit = github.getOctokit(token)
-    // boostrap(octokit, owner, repo, name, value)
+    boostrap(octokit, owner, repo, name, value)
 } catch (error) {
     core.setFailed(error.message);
 }
