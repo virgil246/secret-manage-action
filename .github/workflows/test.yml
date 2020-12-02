@@ -16,7 +16,7 @@ jobs:
         with:
             repo: 'virgil246/secret-manage-action'
             token: ${{ secrets.GH_PA_TOKEN }}
-            name: 'TEST_SECRET' 
+            name: 'TEST-SECRET' 
 
       
             value: 'Your-cookie-value'
