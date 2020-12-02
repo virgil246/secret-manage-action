@@ -31,7 +31,7 @@ const boostrap = async (octokit, owner, repo, name, value) => {
         if (value.length > 0) {
             console.log(name)
 
-            res = await octokit.actions.createOrUpdateRepoSecret({ owner, repo, name, data })
+            res = await octokit.actions.createOrUpdateRepoSecret({ owner, repo, name }, { data })
 
 
             console.log(res)
