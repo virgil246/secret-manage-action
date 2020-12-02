@@ -19,6 +19,7 @@
   "homepage": "https://github.com/virgil246/secret-manage-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0"
+    "@actions/github": "^4.0.0",
+    "tweetsodium": "0.0.5"
   }
 }
