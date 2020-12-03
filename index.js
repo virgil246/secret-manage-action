@@ -2,6 +2,10 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const sodium = require('tweetsodium');
 
+process.on('unhandledRejection', (reason, promise) => {
+  console.log('Unhandled Rejection at:', promise, 'reason:', reason);
+  // Application specific logging, throwing an error, or other logic here
+});
 
 function EncodeSecretValue(key_id, key, value) {
     // Convert the message and key to Uint8Array's (Buffer implements that interface)
