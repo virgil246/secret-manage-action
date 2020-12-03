@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const sodium = require('tweetsodium');
 
+
 process.on('unhandledRejection', (reason, promise) => {
   console.log('Unhandled Rejection at:', promise, 'reason:', reason);
   // Application specific logging, throwing an error, or other logic here
@@ -23,6 +24,12 @@ function EncodeSecretValue(key_id, key, value) {
         key_id
     }
 }
+/**
+ * @param {String} owner 
+ * @param {String} repo 
+ * @param {String} name
+ * @param {String} value  
+ */
 const boostrap = async (octokit, owner, repo, name, value) => {
     try {
         var res = await octokit.actions.getRepoPublicKey({ owner, repo }).catch((error) => { 
@@ -45,6 +52,8 @@ const boostrap = async (octokit, owner, repo, name, value) => {
                 core.setOutput('code', res.status)
                 core.setOutput('data', res.data)
             }
+        }else{
+            octokit.
         }
     } catch (error) {
         console.error(error)
