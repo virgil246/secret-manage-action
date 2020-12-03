@@ -52,8 +52,6 @@ const boostrap = async (octokit, owner, repo, name, value) => {
                 core.setOutput('code', res.status)
                 core.setOutput('data', res.data)
             }
-        }else{
-            octokit.
         }
     } catch (error) {
         console.error(error)
