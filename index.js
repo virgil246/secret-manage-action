@@ -12,9 +12,8 @@ function EncodeSecretValue(key_id, key, value) {
     const encryptedBytes = sodium.seal(messageBytes, keyBytes);
 
     // Base64 the encrypted secret
-    const encrypted = Buffer.from(encryptedBytes).toString('base64');
+//     const encrypted = Buffer.from(encryptedBytes).toString('base64');
 
-    console.log(encrypted);
     return {
         encrypted_value: Buffer.from(encryptedBytes).toString('base64'),
         key_id
@@ -40,13 +39,14 @@ const boostrap = async (octokit, owner, repo, name, value) => {
             if (res.status >= 400) {
                 Core.setFailed(res.data)
             } else {
-                Core.setOutput('status', res.status)
+                Core.setOutput('code', res.status)
                 Core.setOutput('data', res.data)
             }
         }
     } catch (error) {
-        core.setFailed(error.message)
         console.error(error)
+        core.setFailed(error.message)
+        
     }
 
 }
