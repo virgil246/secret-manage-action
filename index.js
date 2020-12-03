@@ -37,10 +37,10 @@ const boostrap = async (octokit, owner, repo, name, value) => {
             console.log(`Here is response : ${res}`)
 
             if (res.status >= 400) {
-                Core.setFailed(res.data)
+                core.setFailed(res.data)
             } else {
-                Core.setOutput('code', res.status)
-                Core.setOutput('data', res.data)
+                core.setOutput('code', res.status)
+                core.setOutput('data', res.data)
             }
         }
     } catch (error) {
