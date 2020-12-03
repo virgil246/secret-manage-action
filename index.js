@@ -62,7 +62,6 @@ try {
     const value = core.getInput('value');
     const myToken = core.getInput('myToken');
     const octokit = github.getOctokit(token)
-    octokit.actions.createOrUpdateRepoSecret()
     boostrap(octokit, own_repo[0], own_repo[1], name, value).catch((error) => {
         console.log(error.message);
         core.setFailed(error.message)})
