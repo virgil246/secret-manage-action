@@ -1,4 +1,5 @@
 # Set & Update Repo Secret action
+![Test_Status](https://github.com/virgil246/secret-manage-action/workflows/Setup%20Secret/badge.svg)
 
 This action is help to update Secret within the action
 ## Inputs
